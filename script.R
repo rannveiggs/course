@@ -31,8 +31,8 @@ res_Shi_20 <- rma.uni(yi, vi, data=Shi_20)
 # Looking at the output
 res_Shi_20
 
-# Running a forest plot
+# Running a forest plot 
 frpl_Shi_20 <- forest(res_Shi_20) 
-text(-3.3, 18, "Author(s) and Year", pos = 4, font = 2)
-text(5.3, 18, "Estimate [95% CI]", pos = 2, font = 2)
 
+# Running a funnel plot
+fupl_Shi_20 <- funnel(res_Shi_20)
