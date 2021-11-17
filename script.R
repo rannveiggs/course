@@ -22,8 +22,10 @@ View(Shi_20)
 Shi_20 <- escalc(measure="SMD", n1i=n1i, n2i=n2i, m1i=m1i, m2i=m2i, sd1i=sd1i, sd2i=sd2i, data = Shi_20, vtype = "UB", append = TRUE, slab=paste(authors, year, sep=", "))
 View(Shi_20)
 
-# Fitting a random effects meta-analysis model to the data using the rma function
+# Fitting a random effects meta-analysis model to the data using the rma function.
+res_Shi_20 <- rma.uni(yi, vi, data=Shi_20, method = "REML", test = "knha")
 res_Shi_20 <- rma.uni(yi, vi, data=Shi_20)
+
 # Looking at the output
 res_Shi_20
 
@@ -37,7 +39,8 @@ frpl_Shi_20 <- forest(res_Shi_20, at=(c(-2, 0, 2, 4, 7)), xlim=c(-6,9),
 # Running a funnel plot
 fupl_Shi_20 <- funnel(res_Shi_20)
 
-# Meta-regression. 
-reg_Shi_20 <- rma(yi, vi, mods = factor(method), data=Shi_20)
-reg_Shi_20 <- rma(yi, vi, mods = ~ year, data=Shi_20)
+# Meta-regression on publication year and study design (Quasi-experiment = 0, RCT = 1). One study have another study design and is omitted. 
+reg_Shi_20 <- rma.uni(yi, vi, mods = ~ year + method, data=Shi_20, method = "REML", test = "knha")
+
+# Looking at the output
 reg_Shi_20
