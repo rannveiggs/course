@@ -27,14 +27,17 @@ res_Shi_20 <- rma.uni(yi, vi, data=Shi_20)
 # Looking at the output
 res_Shi_20
 
-# Running a forest plot 
-frpl_Shi_20 <- forest(res_Shi_20) 
-
+# Running a forest plot. 
+# For a simple version without headings, the function 'forest(res_Sci_20)' is enough.
 frpl_Shi_20 <- forest(res_Shi_20, at=(c(-2, 0, 2, 4, 7)), xlim=c(-6,9),
                       cex=.75, header="Author(s) and Year",
                       mlab="Summary estimate for a RE model") 
 
+
 # Running a funnel plot
 fupl_Shi_20 <- funnel(res_Shi_20)
 
-# Meta-regression. På årstall + RCT el kvasi.
+# Meta-regression. 
+reg_Shi_20 <- rma(yi, vi, mods = factor(method), data=Shi_20)
+reg_Shi_20 <- rma(yi, vi, mods = ~ year, data=Shi_20)
+reg_Shi_20
