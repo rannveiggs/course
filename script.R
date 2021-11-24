@@ -28,6 +28,9 @@ res_Shi_20 <- rma.uni(yi, vi, data=Shi_20, method = "REML", test = "knha")
 # Looking at the output
 res_Shi_20
 
+# Prediction intervals for the model
+predict(res_Shi_20)
+
 # Running a forest plot. 
 # For a simple version without headings, the function 'forest(res_Sci_20)' is enough.
 frpl_Shi_20 <- forest(res_Shi_20, at=(c(-2, 0, 2, 4, 7)), xlim=c(-6,9),
@@ -35,7 +38,7 @@ frpl_Shi_20 <- forest(res_Shi_20, at=(c(-2, 0, 2, 4, 7)), xlim=c(-6,9),
                       mlab="Summary estimate for a RE model") 
 
 
-# Meta-regression on publication year and study design (Quasi-experiment = 0, RCT = 1). One study has another study design and is omitted. 
+# Meta-regression on publication year and study design/method (Quasi-experiment = 0, RCT = 1). One study has another study design and is omitted. 
 reg_Shi_20 <- rma.uni(yi, vi, mods = ~ year + method, data=Shi_20, method = "REML", test = "knha")
 
 # Looking at the output
@@ -43,4 +46,7 @@ reg_Shi_20
 
 # Running a funnel plot
 fupl_Shi_20 <- funnel(res_Shi_20)
+
+# Reference:
+citation("metafor")
 
