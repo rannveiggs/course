@@ -39,7 +39,7 @@ frpl_Shi_20 <- forest(res_Shi_20, at=(c(-2, 0, 2, 4, 7)), xlim=c(-6,9),
 
 
 # Meta-regression on publication year and study design/method (Quasi-experiment = 0, RCT = 1). One study has another study design and is omitted. 
-reg_Shi_20 <- rma.uni(yi, vi, mods = ~ year + method, data=Shi_20, method = "REML", test = "knha")
+reg_Shi_20 <- rma.uni(yi, vi, mods = ~ year + design, data=Shi_20, method = "REML", test = "knha")
 
 # Looking at the output
 reg_Shi_20
